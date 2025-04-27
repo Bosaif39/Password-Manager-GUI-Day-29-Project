@@ -1,7 +1,10 @@
 from tkinter import * 
 from tkinter import messagebox  
-from random import choice, randint, shuffle  
-#import pyperclip  
+from random import choice, randint, shuffle
+import sqlite3
+import pandas as pd
+import pyperclip
+import os
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -16,14 +19,17 @@ def generate_password():
     # Clear the password entry 
     password_entry.delete(0, END)
     # Define character sets for password generation
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
+               'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+               'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
-    # Generate random sections for the password using list comprehension 
-    password_letters = [choice(letters) for _ in range(randint(8, 10))]  
-    password_symbols = [choice(symbols) for _ in range(randint(2, 4))]  
-    password_numbers = [choice(numbers) for _ in range(randint(2, 4))]  
+    # Generate random sections for the password using list comprehension
+    password_letters = [choice(letters) for _ in range(randint(8, 10))]
+    password_symbols = [choice(symbols) for _ in range(randint(2, 4))]
+    password_numbers = [choice(numbers) for _ in range(randint(2, 4))]
 
     password_list = password_letters + password_symbols + password_numbers
     shuffle(password_list)
@@ -33,14 +39,14 @@ def generate_password():
     # Insert the generated password into the password entry field
     password_entry.insert(0, password)
     # Copy the generated password to the clipboard
-   # pyperclip.copy(password)
+    pyperclip.copy(password)
    
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 def save():
-    
+
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
@@ -48,7 +54,7 @@ def save():
     # Check if website and password fields are empty
     if len(website) == 0 or len(password) == 0:
         messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
-        
+
     else:
         # Show a confirmation dialog before saving the data
         is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} "
@@ -60,6 +66,40 @@ def save():
                 # Clear the entry fields after saving
                 website_entry.delete(0, END)
                 password_entry.delete(0, END)
+
+            ## Save to database
+            with sqlite3.connect('passwords.db') as conn:
+                cursor = conn.cursor()
+                # Create table if it doesn't exist
+                cursor.execute('''CREATE TABLE IF NOT EXISTS passwords
+                                (website TEXT, email TEXT, password TEXT)''')
+                cursor.execute('INSERT INTO passwords VALUES (?, ?, ?)', (website, email, password))
+                conn.commit()  # Note: it's conn.commit(), not cursor.commit()
+
+            ## save to csv
+            new_entry = {
+                'Website': [website],
+                'Email': [email],
+                'Password': [password]
+            }
+
+            # Convert to DataFrame
+            new_df = pd.DataFrame(new_entry)
+
+            # Append to existing CSV or create new file
+            if os.path.exists('passwords.csv'):
+                existing_df = pd.read_csv('passwords.csv')
+                updated_df = pd.concat([existing_df, new_df], ignore_index=True)
+            else:
+                updated_df = new_df
+
+            # Save to CSV
+            updated_df.to_csv('passwords.csv', index=False)
+
+            # Clear the entry fields after saving
+            website_entry.delete(0, END)
+            password_entry.delete(0, END)
+
 
 # ---------------------------- UI SETUP ------------------------------- #
 
