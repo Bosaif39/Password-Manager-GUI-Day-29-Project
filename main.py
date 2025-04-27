@@ -1,7 +1,6 @@
 from tkinter import * 
 from tkinter import messagebox  
 from random import choice, randint, shuffle
-import sqlite3
 import pandas as pd
 import pyperclip
 import os
@@ -67,14 +66,6 @@ def save():
                 website_entry.delete(0, END)
                 password_entry.delete(0, END)
 
-            ## Save to database
-            with sqlite3.connect('passwords.db') as conn:
-                cursor = conn.cursor()
-                # Create table if it doesn't exist
-                cursor.execute('''CREATE TABLE IF NOT EXISTS passwords
-                                (website TEXT, email TEXT, password TEXT)''')
-                cursor.execute('INSERT INTO passwords VALUES (?, ?, ?)', (website, email, password))
-                conn.commit()  # Note: it's conn.commit(), not cursor.commit()
 
             ## save to csv
             new_entry = {
