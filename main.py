@@ -4,6 +4,7 @@ from random import choice, randint, shuffle
 import pandas as pd
 import pyperclip
 import os
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -49,6 +50,12 @@ def save():
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+    new_data = {website: {
+        "email":email,
+        "password":password,
+    }}
+
+
 
     # Check if website and password fields are empty
     if len(website) == 0 or len(password) == 0:
@@ -59,6 +66,16 @@ def save():
         is_ok = messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} "
                                                       f"\nPassword: {password} \nIs it ok to save?")
         if is_ok:
+
+            # Save to JSON
+            with open("passwords.json","r") as data_file:
+                data = json.load(data_file)
+                data.update(new_data)
+
+
+            with open("passwords.json","w") as data_file:
+                json.dump(data, data_file, indent=4)
+
             # Append the data to the 'data.txt' file
             with open("passwords.txt", "a") as data_file:
                 data_file.write(f"{website} | {email} | {password}\n")
