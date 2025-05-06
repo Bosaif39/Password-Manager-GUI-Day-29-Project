@@ -21,7 +21,7 @@ This is a Python-based Password Manager application that helps users securely st
 - **Save the data in txt and csv files**
    
 ## **Example:**
-![alt text](https://raw.githubusercontent.com/Bosaif39/example-pics/refs/heads/main/D_29.png?token=GHSAT0AAAAAADDL7KRAPB7UAPDWSBVEGT3G2AZU4HA)
+![alt text](https://github.com/Bosaif39/example-pics/blob/main/D_29.png?raw=true)
 
 ## **Requirements:**
 - Python 3.x
