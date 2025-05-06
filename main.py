@@ -60,7 +60,7 @@ def save():
                                                       f"\nPassword: {password} \nIs it ok to save?")
         if is_ok:
             # Append the data to the 'data.txt' file
-            with open("data.txt", "a") as data_file:
+            with open("passwords.txt", "a") as data_file:
                 data_file.write(f"{website} | {email} | {password}\n")
                 # Clear the entry fields after saving
                 website_entry.delete(0, END)
