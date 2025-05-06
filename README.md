@@ -12,7 +12,7 @@ This is a Python-based Password Manager application that helps users securely st
 4. Click **Add** to save the credentials to a txt and csv files.
 5. The app will display a confirmation message with the details you've entered.
 6. A **Generate Password** button will create a random, secure password with a mix of letters, numbers, and symbols and **automatically copy it to your clipboard**.
-7. The **Add** button saves the credentials in a file named `data.txt` and clears the fields for the next entry.
+7. The **Add** button saves the credentials in a two files named `passwords.txt`, `passwords.csv` and clears the fields for the next entry.
 
 ## **Features:**
 - **Password Generator** 
