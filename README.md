@@ -9,16 +9,17 @@ This is a Python-based Password Manager application that helps users securely st
 1. Enter the **Website name** where you need to store login details.
 2. Enter the **Email/Username** associated with the account.
 3. Enter the **Password** (or use the **Generate Password** button to automatically create one).
-4. Click **Add** to save the credentials to a txt and csv files.
-5. The app will display a confirmation message with the details you've entered.
-6. A **Generate Password** button will create a random, secure password with a mix of letters, numbers, and symbols and **automatically copy it to your clipboard**.
-7. The **Add** button saves the credentials in a two files named `passwords.txt`, `passwords.csv` and clears the fields for the next entry.
+4. Click **Add** to save the credentials to a **txt**, **csv** and **json** files.
+5. A **Generate Password** button will create a random, secure password with a mix of letters, numbers, and symbols and **automatically copy it to your clipboard**.
+6. The **Add** button saves the credentials in the files named `passwords.txt`, `passwords.csv`, `passwords.json` and clears the fields for the next entry.
+7. The **Search** button will find the passwords if exist, otherwise it will display an error message.
 
 ## **Features:**
 - **Password Generator** 
 - **Save Credentials** 
 - **Simple UI**
-- **Save the data in txt and csv files**
+- **Save the data in txt, csv and json files**
+- **Search for passwords**
    
 ## **Example:**
 ![alt text](https://github.com/Bosaif39/example-pics/blob/main/D_29.png?raw=true)
