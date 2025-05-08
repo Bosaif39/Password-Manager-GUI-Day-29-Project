@@ -27,6 +27,9 @@ This is a Python-based Password Manager application that helps users securely st
 ## **Requirements:**
 - Python 3.x
 - Tkinter (pre-installed with Python)
-- Pandas
+- random
 - Pyperclip (can be installed via pip: `pip install pyperclip`)
+- json
+- Pandas
+- os
 - An image file `logo.png` for the app's logo (make sure to place it in the same directory as the script).
