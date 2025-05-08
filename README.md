@@ -22,7 +22,7 @@ This is a Python-based Password Manager application that helps users securely st
 - **Search for passwords**
    
 ## **Example:**
-![alt text](https://github.com/Bosaif39/example-pics/blob/main/D_29.png?raw=true)
+![alt text](https://github.com/Bosaif39/example-pics/blob/main/D_27tt.png?raw=true)
 
 ## **Requirements:**
 - Python 3.x
