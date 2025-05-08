@@ -25,11 +25,11 @@ This is a Python-based Password Manager application that helps users securely st
 ![alt text](https://github.com/Bosaif39/example-pics/blob/main/D_27tt.png?raw=true)
 
 ## **Requirements:**
-- Python 3.x
-- Tkinter (pre-installed with Python)
-- random
-- Pyperclip (can be installed via pip: `pip install pyperclip`)
-- json
-- Pandas
-- os
-- An image file `logo.png` for the app's logo (make sure to place it in the same directory as the script).
+* Python 3.x
+* `tkinter` (pre-installed with Python)
+* `random` (for generating random passwords)
+* `pyperclip` (can be installed via `pip install pyperclip`)
+* `json`
+* `pandas`
+* `os`
+* **Image**: An image file `logo.png` for the app's logo (ensure it is in the same directory as the script).
